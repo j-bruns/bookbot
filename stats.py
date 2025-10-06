@@ -1,10 +1,19 @@
 def number_of_words(text):
     return len(text.split())
 def number_of_chars(text):
-    result = {}
+    result = []
     for char in text:
         char = char.lower()
-        if not char in result:
-            result[char] = 0
-        result[char] += 1
+        if not {"char":char,"num":0} in result:
+            result.append({"char":char,"num":0})
+        for i in range(0,len(result)):
+            if result[i]["char"] == char:
+                result[i]["num"] += 1
+                break
+            
     return result
+def sort_on(items):
+    return items["num"]
+def sort_dict(dict):
+    dict.sort(reverse=True,key=sort_on)
+    return dict
